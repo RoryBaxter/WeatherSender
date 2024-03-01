@@ -26,6 +26,12 @@ paths:
             text/plain:
               schema:
                 $ref: '#/components/schemas/WeatherReport'
+        '400':
+          description: Bad request - probably means the date is not formatted correctly
+        '404':
+          description: The weather report for the requested date does not exist
+        '422':
+          description: The weather report for the requested date does exist and is on the system, but for some reason is invalid
   '/weatherReport':
     post:
       tags:
@@ -33,7 +39,14 @@ paths:
       operationId: generateWeatherReport
       summary: Generate a weather report for the current day
       responses:
-        - '200'
+        '201':
+          description: The weather report was successfully fully generated and is being returned
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WeatherReport'
+        '500':
+          description: The weather report was not successfully generated
 
 components:
   parameters:
