@@ -1,0 +1,22 @@
+@startuml
+alt This may be an REST call or a CRON job
+ExternalSource -> Controller: Weather Update Request
+end
+
+Controller -> WeatherService: Weather Update Request
+
+alt
+group per source
+WeatherService -> WeatherSource: Query Weather
+WeatherSource -> WeatherService: Weather Response
+WeatherService -> WeatherService: Process Response
+end
+
+WeatherService -> WeatherService: Generate Report
+
+WeatherService -> FileSystem: Weather Report
+FileSystem -> FileSystem: Store Weather Report
+WeatherService -> Controller: Success Response
+Controller -> ExternalSource: Success Response
+
+@enduml
