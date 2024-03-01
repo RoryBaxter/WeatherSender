@@ -1,19 +1,24 @@
 @startuml
 ExternalSource -> Controller: Weather Request
-Controller --> ReportService: Weather Report Request
+Controller -> ReportService: Weather Report Request
 ReportService -> FileSystem: Weather Report Request
 
-alt Valid Requested weather report does exist
-
+alt Requested weather report does exists and is valid
     FileSystem -> ReportService: Weather Report File
     ReportService -> ReportService: Process Report
     ReportService -> Controller: Weather Report Response
     Controller -> ExternalSource: Weather Report Response
 
-else Valid Requested weather report does not exist
+else Requested weather report does exists but is not valid
+    FileSystem -> ReportService: Weather Report File
+    ReportService -> ReportService: Process Report
+    ReportService -> Controller: Invalid Weather Report Response
+    Controller -> ExternalSource: Invalid Weather Report Response
+
+else Requested weather report does not exists
     FileSystem -> ReportService: Required File Not Exist Response
-    ReportService -> Controller: Not Enough Data Response
-    Controller -> ExternalSource: Not Ready Yet Response
+    ReportService -> Controller: No Weather Report Response
+    Controller -> ExternalSource: No Weather Report Response
 end
 
 @enduml

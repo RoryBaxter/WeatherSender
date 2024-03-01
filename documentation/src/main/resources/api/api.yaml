@@ -26,6 +26,12 @@ paths:
             text/plain:
               schema:
                 $ref: '#/components/schemas/WeatherReport'
+        '206':
+          description: Successfully found a weather report for the required date, but it is incomplete
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WeatherReport'
         '400':
           description: Bad request - probably means the date is not formatted correctly
         '404':
