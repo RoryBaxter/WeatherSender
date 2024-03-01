@@ -17,7 +17,7 @@ paths:
         - in: path
           name: date
           schema:
-            $ref: '#/components/schemas/Date'
+            $ref: '#/components/parameters/Date'
           required: true
       responses:
         '200':
@@ -34,3 +34,19 @@ paths:
       summary: Generate a weather report for the current day
       responses:
         - '200'
+
+components:
+  parameters:
+    Date:
+      name: Date
+      schema:
+        type: string
+      required: true
+      description: Following the format YYYY-mm-dd
+      example: '2024-03-01'
+  schemas:
+    WeatherReport:
+      name: Weather Report
+      type: string
+      description: Structured string of the weather report
+
