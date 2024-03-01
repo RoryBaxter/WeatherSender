@@ -1,0 +1,36 @@
+openapi: 3.0.3
+info:
+  title: Weather Sender API
+  description: API for my Weather Update Sender system
+  version: "${project.version}"
+servers:
+  - url: 'http'
+
+paths:
+  '/weatherReport/{date}':
+    get:
+      tags:
+        - Weather-Service
+      operationId: getWeatherReport
+      summary: Get Weather Report for given date
+      parameters:
+        - in: path
+          name: date
+          schema:
+            $ref: '#/components/schemas/Date'
+          required: true
+      responses:
+        '200':
+          description: Successfully found a weather report for the required date
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WeatherReport'
+  '/weatherReport':
+    post:
+      tags:
+        - Weather-Service
+      operationId: generateWeatherReport
+      summary: Generate a weather report for the current day
+      responses:
+        - '200'
