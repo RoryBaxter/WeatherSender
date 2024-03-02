@@ -1,4 +1,4 @@
-package org.baxter.model;
+package org.baxter.model.report;
 
 public enum WeatherReportState {
     VALID,

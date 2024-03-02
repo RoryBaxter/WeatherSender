@@ -1,4 +1,4 @@
-package org.baxter.model;
+package org.baxter.model.report;
 
 import java.util.Map;
 
