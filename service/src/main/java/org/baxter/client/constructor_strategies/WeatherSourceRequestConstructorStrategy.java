@@ -14,7 +14,7 @@ public class WeatherSourceRequestConstructorStrategy {
         this.constructionStrategy = constructionStrategy;
     }
 
-    protected HttpRequest buildURI(final WeatherSourceAPIConfig weatherSourceAPIConfig, final Date date) {
+    public HttpRequest buildRequest(final WeatherSourceAPIConfig weatherSourceAPIConfig, final Date date) {
         return constructionStrategy.apply(weatherSourceAPIConfig, date);
     }
 }

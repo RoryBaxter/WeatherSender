@@ -17,6 +17,10 @@ public class WeatherSource {
         this.requestConstructorStrategy = requestConstructorStrategy;
     }
 
+    public WeatherSourceAPIConfig getApiConfig() {
+        return apiConfig;
+    }
+
     public WeatherSourceRequestConstructorStrategy getRequestConstructorStrategy() {
         return requestConstructorStrategy;
     }
