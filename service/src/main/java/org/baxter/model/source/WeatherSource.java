@@ -1,28 +1,26 @@
 package org.baxter.model.source;
 
-import org.baxter.client.constructor_strategies.WeatherSourceRequestConstructorStrategy;
-
 public class WeatherSource {
 
     private final WeatherSourceAPIConfig apiConfig;
-    private final WeatherSourceRequestConstructorStrategy requestConstructorStrategy;
+    private final WeatherSourceStrategy strategy;
 
     // TODO: content parser strat
 
     WeatherSource(
             final WeatherSourceAPIConfig apiConfig,
-            final WeatherSourceRequestConstructorStrategy requestConstructorStrategy
+            final WeatherSourceStrategy requestConstructorStrategy
     ) {
         this.apiConfig = apiConfig;
-        this.requestConstructorStrategy = requestConstructorStrategy;
+        this.strategy = requestConstructorStrategy;
     }
 
     public WeatherSourceAPIConfig getApiConfig() {
         return apiConfig;
     }
 
-    public WeatherSourceRequestConstructorStrategy getRequestConstructorStrategy() {
-        return requestConstructorStrategy;
+    public WeatherSourceStrategy getStrategy() {
+        return strategy;
     }
 
 }

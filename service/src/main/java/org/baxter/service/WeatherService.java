@@ -4,6 +4,7 @@ import org.baxter.client.WeatherSourceClient;
 import org.baxter.model.report.IndividualWeatherReport;
 import org.baxter.model.source.WeatherSource;
 import org.baxter.model.source.WeatherSourceAPIConfig;
+import org.baxter.model.source.WeatherSourceStrategy;
 
 import java.io.IOException;
 import java.net.http.HttpRequest;
@@ -32,13 +33,15 @@ public class WeatherService {
         weatherSources.forEach(
                 weatherSource -> {
                     WeatherSourceAPIConfig apiConfig = weatherSource.getApiConfig();
-                    HttpRequest request = weatherSource.getRequestConstructorStrategy().buildRequest(apiConfig, todayDate);
+                    WeatherSourceStrategy strategy = weatherSource.getStrategy();
+                    HttpRequest request = strategy.buildRequest(apiConfig, todayDate);
+                    HttpResponse<String> response;
                     try {
-                        HttpResponse<String> response = client.callAPI(request);
+                        response = client.callAPI(request);
                     } catch (IOException | InterruptedException e) {
                         throw new RuntimeException(e);
                     }
-                    // TODO parse response
+                    individualWeatherReports.add(strategy.parseResponse(response));
                 }
         );
         // TODO construct weather report
