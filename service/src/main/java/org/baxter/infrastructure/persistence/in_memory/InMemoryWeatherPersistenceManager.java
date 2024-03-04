@@ -5,16 +5,20 @@ import org.baxter.model.report.WeatherReport;
 
 import java.util.Date;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class InMemoryWeatherPersistenceManager implements WeatherPersistenceManager {
 
+    private final ConcurrentHashMap<Date, WeatherReport> weatherReportMap =
+            new ConcurrentHashMap<>();
+
     @Override
     public void storeWeatherReport(final WeatherReport weatherReport) {
-        throw new UnsupportedOperationException("NYI");
+        weatherReportMap.put(weatherReport.getDate(), weatherReport);
     }
 
     @Override
     public Optional<WeatherReport> getWeatherReport(final Date date) {
-        throw new UnsupportedOperationException("NYI");
+        return Optional.ofNullable(weatherReportMap.get(date));
     }
 }
