@@ -1,4 +1,4 @@
-package org.baxter.client;
+package org.baxter.infrastructure.client;
 
 import java.io.IOException;
 import java.net.http.HttpClient;

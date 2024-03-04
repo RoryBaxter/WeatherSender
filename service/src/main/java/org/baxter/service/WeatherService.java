@@ -1,6 +1,6 @@
 package org.baxter.service;
 
-import org.baxter.client.WeatherSourceClient;
+import org.baxter.infrastructure.client.WeatherSourceClient;
 import org.baxter.model.report.IndividualWeatherReport;
 import org.baxter.model.source.WeatherSource;
 import org.baxter.model.source.WeatherSourceAPIConfig;
